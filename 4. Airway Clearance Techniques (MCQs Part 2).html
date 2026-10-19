@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQs on Airway Clearance Techniques (Part 2)</title>
+    <style>
+        :root {
+            --bg-color: #f5f7fa;
+            --container-bg: white;
+            --text-color: #333;
+            --border-color: #ddd;
+            --primary-color: #3498db;
+            --header-color: #2c3e50;
+            --secondary-text: #7f8c8d;
+            --progress-bg: #ecf0f1;
+            --question-bg: #f8f9fa;
+            --option-bg: #fff;
+            --option-hover: #f1f8ff;
+            --option-selected: #d1ecf1;
+            --correct-bg: #d4edda;
+            --correct-border: #28a745;
+            --incorrect-bg: #f8d7da;
+            --incorrect-border: #dc3545;
+            --button-bg: #3498db;
+            --button-hover: #2980b9;
+            --button-disabled: #bdc3c7;
+            --restart-bg: #2ecc71;
+            --restart-hover: #27ae60;
+            --review-bg: #f39c12;
+            --review-hover: #e67e22;
+            --toggle-bg: #ecf0f1;
+            --toggle-slider: white;
+            --toggle-text: #7f8c8d;
+        }
+
+        .dark-mode {
+            --bg-color: #1a1a2e;
+            --container-bg: #16213e;
+            --text-color: #e6e6e6;
+            --border-color: #394867;
+            --primary-color: #4cc9f0;
+            --header-color: #e6e6e6;
+            --secondary-text: #a9a9a9;
+            --progress-bg: #394867;
+            --question-bg: #1f4068;
+            --option-bg: #16213e;
+            --option-hover: #1f4068;
+            --option-selected: #1f4068;
+            --correct-bg: #2d5a2d;
+            --correct-border: #4caf50;
+            --incorrect-bg: #5a2d2d;
+            --incorrect-border: #f44336;
+            --button-bg: #4cc9f0;
+            --button-hover: #3aa8d0;
+            --button-disabled: #5d6d7e;
+            --restart-bg: #2ecc71;
+            --restart-hover: #27ae60;
+            --review-bg: #f39c12;
+            --review-hover: #e67e22;
+            --toggle-bg: #394867;
+            --toggle-slider: #4cc9f0;
+            --toggle-text: #e6e6e6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--container-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            position: relative;
+        }
+        h1 {
+            color: var(--header-color);
+            margin-bottom: 5px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        .author {
+            color: var(--secondary-text);
+            font-style: italic;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        .description {
+            color: var(--secondary-text);
+            margin-bottom: 20px;
+            transition: color 0.3s;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 35px;
+            right: 0;
+            display: flex;
+            align-items: center;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 120px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--toggle-bg);
+            transition: .4s;
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--toggle-text);
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 60px;
+            left: 4px;
+            bottom: 4px;
+            background-color: var(--toggle-slider);
+            transition: .4s;
+            border-radius: 34px;
+            z-index: 1;
+        }
+        .slider-text {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .light-text, .dark-text {
+            transition: opacity 0.3s;
+        }
+        .dark-mode .light-text {
+            opacity: 0.5;
+        }
+        .light-text {
+            opacity: 0.5;
+        }
+        .dark-mode .dark-text {
+            opacity: 1;
+        }
+        .dark-text {
+            opacity: 0.5;
+        }
+        input:checked + .slider:before {
+            transform: translateX(52px);
+        }
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+            height: 10px;
+            transition: background-color 0.3s;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s ease, background-color 0.3s;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--header-color);
+            transition: color 0.3s;
+        }
+        .question {
+            background: var(--question-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: background-color 0.3s;
+        }
+        .question-number {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .options {
+            display: grid;
+            grid-gap: 10px;
+        }
+        .option {
+            padding: 12px 15px;
+            background: var(--option-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .option:hover {
+            background: var(--option-hover);
+            border-color: var(--primary-color);
+        }
+        .option.selected {
+            background: var(--option-selected);
+            border-color: var(--primary-color);
+        }
+        .option.correct {
+            background: var(--correct-bg);
+            border-color: var(--correct-border);
+        }
+        .option.incorrect {
+            background: var(--incorrect-bg);
+            border-color: var(--incorrect-border);
+        }
+        .feedback {
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+        .feedback.correct {
+            background: var(--correct-bg);
+            color: var(--text-color);
+            border: 1px solid var(--correct-border);
+            display: block;
+        }
+        .feedback.incorrect {
+            background: var(--incorrect-bg);
+            color: var(--text-color);
+            border: 1px solid var(--incorrect-border);
+            display: block;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            background: var(--button-bg);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: var(--button-hover);
+        }
+        button:disabled {
+            background: var(--button-disabled);
+            cursor: not-allowed;
+        }
+        .results {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        .score {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--header-color);
+        }
+        .score-value {
+            font-size: 48px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .restart-btn {
+            margin-top: 20px;
+            background: var(--restart-bg);
+        }
+        .restart-btn:hover {
+            background: var(--restart-hover);
+        }
+        .review-btn {
+            margin-top: 20px;
+            background: var(--review-bg);
+        }
+        .review-btn:hover {
+            background: var(--review-hover);
+        }
+        .review-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--question-bg);
+            border-radius: 8px;
+            display: none;
+        }
+        .review-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--header-color);
+            text-align: center;
+        }
+        .review-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 4px solid var(--incorrect-border);
+            background: var(--container-bg);
+            border-radius: 4px;
+        }
+        .review-question-number {
+            font-weight: bold;
+            color: var(--incorrect-border);
+            margin-bottom: 8px;
+        }
+        .review-question-text {
+            margin-bottom: 10px;
+        }
+        .review-answer {
+            margin-top: 8px;
+            font-weight: bold;
+        }
+        .review-correct {
+            color: var(--correct-border);
+        }
+        .review-explanation {
+            margin-top: 5px;
+            font-style: italic;
+            color: var(--secondary-text);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MCQs on Airway Clearance Techniques (Part 2)</h1>
+            <p class="author">Dr. Samy Salem</p>
+            <p class="description">Test your knowledge of Airway Clearance Techniques: medication timing, CPT components, percussion, vibration, and ACBT</p>
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle">
+                    <span class="slider">
+                        <div class="slider-text">
+                            <span class="light-text">Light</span>
+                            <span class="dark-text">Dark</span>
+                        </div>
+                    </span>
+                </label>
+            </div>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <div class="stats">
+            <div>Question: <span id="current-question">1</span>/<span id="total-questions">45</span></div>
+            <div>Score: <span id="score">0</span>/<span id="total-score">45</span></div>
+        </div>
+
+        <div id="quiz-container">
+            <!-- Questions will be inserted here by JavaScript -->
+        </div>
+
+        <div class="navigation">
+            <button id="prev-btn" disabled>Previous</button>
+            <button id="next-btn">Next</button>
+        </div>
+
+        <div id="results" class="results">
+            <div class="score">Your Score: <span class="score-value" id="final-score">0</span>/45</div>
+            <p id="performance-message"></p>
+            <button class="restart-btn" id="restart-btn">Restart Quiz</button>
+            <button class="review-btn" id="review-btn">Review Incorrect Answers</button>
+        </div>
+
+        <div id="review-section" class="review-section">
+            <h2 class="review-title">Questions Answered Incorrectly</h2>
+            <div id="incorrect-questions-list"></div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz data extracted from 4. Airway Clearance Techniques (MCQs Part 2).pdf
+        const originalQuizData = [
+            {
+                question: "Bronchodilators should be administered at which time relative to airway clearance sessions?",
+                options: [
+                    "After airway clearance sessions",
+                    "Before airway clearance sessions",
+                    "During airway clearance sessions",
+                    "Only if the patient requests them"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Inhaled antibiotics for acute pulmonary infection and cystic fibrosis should be administered at which time relative to airway clearance sessions?",
+                options: [
+                    "Before airway clearance sessions",
+                    "During airway clearance sessions",
+                    "After airway clearance sessions",
+                    "At any time, as it makes no difference"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is monitored during ACTs to determine patient response and guide treatment progression?",
+                options: [
+                    "Heart rate, respiratory rate, blood pressure, oxygen saturation, work of breathing, breath sounds, and patient symptoms",
+                    "Only heart rate",
+                    "Only oxygen saturation",
+                    "Only breath sounds"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is one of the five general approaches to airway clearance methods?",
+                options: [
+                    "Pursed-lip breathing",
+                    "Chest physical therapy (CPT)",
+                    "Diaphragmatic breathing",
+                    "Paced breathing"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Chest physical therapy (CPT) includes which of the following components?",
+                options: [
+                    "Postural drainage, percussion, and vibration",
+                    "Pursed-lip breathing and paced breathing",
+                    "Diaphragmatic breathing and lateral costal breathing",
+                    "Inspiratory hold and trunk counterrotation"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is a physiological principle utilized by ACTs?",
+                options: [
+                    "Decreasing expiratory airflow",
+                    "Creating airflow oscillations that loosen mucus",
+                    "Decreasing lung volumes",
+                    "Eliminating expiratory flow bias"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Oscillation of airflow and secretion clearance is a physiological mechanism used in ACTs to enhance mucus mobilization and improve:",
+                options: [
+                    "Only expiratory flow rate",
+                    "Only ciliary activity",
+                    "Mucociliary clearance",
+                    "Only mucus rheology"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Chest percussion is a manual technique that produces airflow oscillation through which mechanism?",
+                options: [
+                    "Fine oscillatory movements applied during expiration",
+                    "Rhythmic manual compression transmitted through the chest wall",
+                    "Intermittent resistance to expiratory airflow",
+                    "Rapid bursts of positive pressure"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Chest vibrations are a manual technique that produces airflow oscillation through which mechanism?",
+                options: [
+                    "Rhythmic manual compression transmitted through the chest wall",
+                    "Fine oscillatory movements applied during expiration",
+                    "Intermittent resistance to expiratory airflow",
+                    "Rapid bursts of positive pressure"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Oscillatory PEP devices (Flutter®, Acapella®) produce airway oscillations through which mechanism?",
+                options: [
+                    "Fine oscillatory movements applied during expiration",
+                    "Rhythmic manual compression transmitted through the chest wall",
+                    "Intermittent resistance to expiratory airflow producing airway oscillations",
+                    "Rapid bursts of positive pressure directly into airways"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Intrapulmonary Percussive Ventilation (IPV) produces airway oscillations through which mechanism?",
+                options: [
+                    "Fine oscillatory movements applied during expiration",
+                    "Rhythmic manual compression transmitted through the chest wall",
+                    "Intermittent resistance to expiratory airflow",
+                    "Delivers rapid bursts of positive pressure directly into airways"
+                ],
+                answer: 3,
+                explanation: ""
+            },
+            {
+                question: "When PEF exceeds PIF by at least what percentage does mucus transport toward upper airways become enhanced?",
+                options: [
+                    "5% (PEF:PIF > 1.05)",
+                    "10% (PEF:PIF > 1.1)",
+                    "20% (PEF:PIF > 1.2)",
+                    "50% (PEF:PIF > 1.5)"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is a collateral ventilation pathway?",
+                options: [
+                    "Pores of Kohn",
+                    "Alveolar ducts",
+                    "Respiratory bronchioles",
+                    "Terminal bronchioles"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Which of the following techniques increases lung volumes by combining positive pressure with airflow oscillation?",
+                options: [
+                    "Deep breathing techniques",
+                    "Positioning strategies",
+                    "Oscillatory PEP (Flutter®, Acapella®)",
+                    "Breathing exercises"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Best preventive uses of airway clearance therapy include all of the following EXCEPT:",
+                options: [
+                    "Body positioning and patient mobilization to prevent retained secretions in acutely ill patients",
+                    "ACT combined with physical activity to maintain lung function in patients with CF",
+                    "Strict bed rest without any mobilization",
+                    "Positioning strategies to improve lung expansion"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Postural Drainage (PD) uses body positioning and gravity to:",
+                options: [
+                    "Increase lung volumes",
+                    "Move secretions from smaller airways toward larger central airways",
+                    "Reduce intracranial pressure",
+                    "Improve cardiac output"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Once secretions reach central airways during PD, they can be removed by:",
+                options: [
+                    "Coughing or suctioning",
+                    "Vibration only",
+                    "Percussion only",
+                    "Shaking only"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Postural drainage positions are usually maintained for how long?",
+                options: [
+                    "1 to 2 minutes",
+                    "3 to 15 minutes",
+                    "20 to 30 minutes",
+                    "45 to 60 minutes"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "In adults without cystic fibrosis, effective drainage often requires a head-down position greater than how many degrees below horizontal?",
+                options: [
+                    "10°",
+                    "15°",
+                    "25°",
+                    "45°"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Rest periods between postural drainage positions help prevent:",
+                options: [
+                    "Hypertension",
+                    "Hypoxemia",
+                    "Hypercapnia",
+                    "Tachycardia"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "For patients in head-down positions during chest physical therapy, forceful coughing should be avoided because it increases:",
+                options: [
+                    "Intracranial pressure",
+                    "Abdominal pressure",
+                    "Blood pressure",
+                    "Intrapleural pressure"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Instead of forceful coughing in head-down positions, which technique should be used?",
+                options: [
+                    "High-frequency oscillation",
+                    "Forced Expiration Technique (FET)",
+                    "Mechanical insufflation-exsufflation",
+                    "Intra-pulmonary percussive ventilation"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "A routine chest physical therapy session lasts up to:",
+                options: [
+                    "5 minutes",
+                    "10 minutes",
+                    "15 minutes",
+                    "30 minutes"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Mobilization of secretions after chest physical therapy may occur up to how long after the session?",
+                options: [
+                    "10 minutes",
+                    "30 minutes",
+                    "1 hour",
+                    "3 hours"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is a contraindication for all postural drainage positions?",
+                options: [
+                    "Intracranial pressure > 20 mm Hg",
+                    "Controlled hypertension",
+                    "Mild anxiety",
+                    "Stable rib fracture"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is a contraindication specifically for the Trendelenburg position?",
+                options: [
+                    "Active hemoptysis",
+                    "Uncontrolled hypertension",
+                    "Empyema",
+                    "Bronchopleural fistula"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "During chest percussion, the therapist rhythmically claps the chest wall with:",
+                options: [
+                    "Flat hands",
+                    "Fingertips",
+                    "The ulnar border of the hand",
+                    "Cupped hands"
+                ],
+                answer: 3,
+                explanation: ""
+            },
+            {
+                question: "Chest percussion is typically performed during:",
+                options: [
+                    "Inspiration only",
+                    "Expiration only",
+                    "Both inspiration and expiration",
+                    "Breath-holding only"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "The duration of chest percussion is approximately:",
+                options: [
+                    "1 to 2 minutes",
+                    "3 to 5 minutes",
+                    "10 to 15 minutes",
+                    "20 to 30 minutes"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Most mechanical percussion devices operate between:",
+                options: [
+                    "1-10 Hz",
+                    "20-50 Hz",
+                    "60-90 Hz",
+                    "100-150 Hz"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Which of the following areas should be avoided during percussion?",
+                options: [
+                    "Bony prominences such as the clavicle, spine of scapula, and vertebral spinous processes",
+                    "The lateral chest wall",
+                    "The posterior chest wall",
+                    "The upper lobes"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is a disadvantage of manual percussion?",
+                options: [
+                    "It promotes patient independence",
+                    "It is useful for infants and unresponsive patients",
+                    "It requires caregiver assistance for manual treatment",
+                    "It may shorten treatment duration"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is a contraindication or precaution for percussion?",
+                options: [
+                    "Chronic lung disease",
+                    "Osteoporosis",
+                    "Infancy",
+                    "Unresponsive patients"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Vibration is described as:",
+                options: [
+                    "A gentle, high-frequency oscillatory force applied to the chest wall",
+                    "A vigorous bouncing compression of the chest wall",
+                    "Rhythmic chest clapping",
+                    "A sustained compression held for 30 seconds"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Shaking is described as:",
+                options: [
+                    "A gentle, high-frequency oscillatory force",
+                    "A stronger, more vigorous \"bouncing\" compression of the chest wall",
+                    "Rhythmic chest clapping",
+                    "A sustained stretch of the chest wall"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Unlike percussion, vibration and shaking are only performed during:",
+                options: [
+                    "Inspiration",
+                    "Expiration",
+                    "Both inspiration and expiration",
+                    "Breath-holding"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "In mechanically ventilated patients, vibration and shaking must be synchronized with:",
+                options: [
+                    "The patient's spontaneous breaths",
+                    "The cardiac cycle",
+                    "Ventilator-controlled exhalation",
+                    "The patient's cough"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Which technique is better tolerated when chest wall compliance is poor in acutely ill patients?",
+                options: [
+                    "Shaking",
+                    "Vibration",
+                    "Percussion",
+                    "Chest clapping"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "The Active Cycle of Breathing Techniques (ACBT) consists of which three sequential components?",
+                options: [
+                    "Percussion, vibration, and shaking",
+                    "Relaxed diaphragmatic breathing, thoracic expansion, and forced expiration technique (huffs)",
+                    "Postural drainage, percussion, and coughing",
+                    "Autogenic drainage, huffing, and coughing"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "The thoracic expansion exercises in ACBT emphasize:",
+                options: [
+                    "Slow, controlled deep inspiration through the nose",
+                    "Rapid, shallow inspiration",
+                    "Mouth breathing with a short inspiratory hold",
+                    "Breath-holding at residual volume"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Thoracic expansion exercises facilitate airflow through which collateral ventilation pathways?",
+                options: [
+                    "Pores of Kohn, Canals of Lambert, and Channels of Martin",
+                    "Alveolar ducts and respiratory bronchioles",
+                    "Terminal bronchioles only",
+                    "The trachea and main bronchi"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "A low lung volume huff mobilizes secretions from:",
+                options: [
+                    "Larger central airways",
+                    "Peripheral airways toward central airways",
+                    "The trachea only",
+                    "The nasal passages"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "A high lung volume huff clears secretions from:",
+                options: [
+                    "Peripheral airways only",
+                    "Larger central airways",
+                    "The alveoli only",
+                    "The pleural space"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "During effective huffing, the mouth should be:",
+                options: [
+                    "Half or almost closed",
+                    "Open, O-shaped (glottis open)",
+                    "Closed completely",
+                    "Shaped as for the \"E\" sound"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "In autogenic drainage, the \"Unstick Phase\" involves breathing at:",
+                options: [
+                    "Low-volume near expiratory reserve volume (ERV)",
+                    "Medium lung volumes",
+                    "Deep breaths near vital capacity (VC)",
+                    "Total lung capacity (TLC)"
+                ],
+                answer: 0,
+                explanation: ""
+            }
+        ];
+
+        // Function to shuffle an array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Function to create a randomized version of the quiz data
+        function createRandomizedQuizData() {
+            const randomizedData = [];
+            
+            originalQuizData.forEach(question => {
+                // Create a copy of the original question
+                const randomizedQuestion = {
+                    question: question.question,
+                    options: [...question.options], // Copy options array
+                    originalAnswer: question.answer, // Store original answer index
+                    explanation: question.explanation
+                };
+                
+                // Create an array of indices [0, 1, 2, 3]
+                const indices = [0, 1, 2, 3];
+                
+                // Shuffle the indices
+                shuffleArray(indices);
+                
+                // Create a new options array with shuffled order
+                const shuffledOptions = indices.map(index => question.options[index]);
+                
+                // Find the new position of the correct answer
+                const newAnswerIndex = indices.indexOf(question.answer);
+                
+                // Update the question with shuffled options and new answer
+                randomizedQuestion.options = shuffledOptions;
+                randomizedQuestion.answer = newAnswerIndex;
+                
+                randomizedData.push(randomizedQuestion);
+            });
+            
+            return randomizedData;
+        }
+
+        // Create randomized quiz data
+        let quizData = createRandomizedQuizData();
+
+        // Quiz state variables
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let incorrectQuestions = [];
+
+        // DOM elements
+        const quizContainer = document.getElementById('quiz-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const currentQuestionEl = document.getElementById('current-question');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const scoreEl = document.getElementById('score');
+        const totalScoreEl = document.getElementById('total-score');
+        const resultsContainer = document.getElementById('results');
+        const finalScoreEl = document.getElementById('final-score');
+        const performanceMessageEl = document.getElementById('performance-message');
+        const restartBtn = document.getElementById('restart-btn');
+        const reviewBtn = document.getElementById('review-btn');
+        const reviewSection = document.getElementById('review-section');
+        const incorrectQuestionsList = document.getElementById('incorrect-questions-list');
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const lightText = document.querySelector('.light-text');
+        const darkText = document.querySelector('.dark-text');
+
+        // Initialize quiz
+        function initQuiz() {
+            totalQuestionsEl.textContent = quizData.length;
+            totalScoreEl.textContent = quizData.length;
+            showQuestion();
+            updateProgressBar();
+            
+            // Initialize dark mode based on system preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+                updateToggleText(true);
+            } else {
+                updateToggleText(false);
+            }
+            
+            // Event listeners
+            prevBtn.addEventListener('click', showPreviousQuestion);
+            nextBtn.addEventListener('click', showNextQuestion);
+            restartBtn.addEventListener('click', restartQuiz);
+            reviewBtn.addEventListener('click', showIncorrectQuestions);
+            darkModeToggle.addEventListener('change', toggleDarkMode);
+        }
+
+        // Toggle dark mode
+        function toggleDarkMode() {
+            const isDarkMode = darkModeToggle.checked;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            updateToggleText(isDarkMode);
+        }
+
+        // Update toggle text opacity
+        function updateToggleText(isDarkMode) {
+            if (isDarkMode) {
+                lightText.style.opacity = '0.5';
+                darkText.style.opacity = '1';
+            } else {
+                lightText.style.opacity = '1';
+                darkText.style.opacity = '0.5';
+            }
+        }
+
+        // Show current question
+        function showQuestion() {
+            currentQuestionEl.textContent = currentQuestion + 1;
+            scoreEl.textContent = score;
+            
+            const question = quizData[currentQuestion];
+            let optionsHTML = '';
+            
+            question.options.forEach((option, index) => {
+                let optionClass = 'option';
+                if (userAnswers[currentQuestion] === index) {
+                    optionClass += ' selected';
+                    if (index === question.answer) {
+                        optionClass += ' correct';
+                    } else {
+                        optionClass += ' incorrect';
+                    }
+                }
+                
+                optionsHTML += `
+                    <div class="${optionClass}" data-index="${index}">
+                        ${String.fromCharCode(65 + index)}) ${option}
+                    </div>
+                `;
+            });
+            
+            let feedbackHTML = '';
+            if (userAnswers[currentQuestion] !== null) {
+                const isCorrect = userAnswers[currentQuestion] === question.answer;
+                const correctLetter = String.fromCharCode(65 + question.answer);
+                const correctAnswerText = question.options[question.answer];
+                
+                feedbackHTML = `
+                    <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
+                        ${isCorrect ? '✓ Correct!' : '✗ Incorrect!'} 
+                        ${!isCorrect ? `Correct answer: ${correctLetter}) ${correctAnswerText}` : ''}
+                        ${question.explanation ? `<br><br>Explanation: ${question.explanation}` : ''}
+                    </div>
+                `;
+            }
+            
+            quizContainer.innerHTML = `
+                <div class="question">
+                    <div class="question-number">Question ${currentQuestion + 1}/${quizData.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">${optionsHTML}</div>
+                    ${feedbackHTML}
+                </div>
+            `;
+            
+            // Add event listeners to options
+            const optionElements = quizContainer.querySelectorAll('.option');
+            optionElements.forEach(option => {
+                option.addEventListener('click', selectOption);
+            });
+            
+            // Update navigation buttons
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.textContent = currentQuestion === quizData.length - 1 ? 'Finish Quiz' : 'Next';
+        }
+
+        // Select an option
+        function selectOption(e) {
+            if (userAnswers[currentQuestion] !== null) return; // Already answered
+            
+            const selectedOption = e.currentTarget;
+            const selectedIndex = parseInt(selectedOption.dataset.index);
+            
+            userAnswers[currentQuestion] = selectedIndex;
+            
+            // Check if answer is correct
+            if (selectedIndex === quizData[currentQuestion].answer) {
+                score++;
+                scoreEl.textContent = score;
+            } else {
+                // Add to incorrect questions list
+                incorrectQuestions.push({
+                    question: quizData[currentQuestion].question,
+                    userAnswer: selectedIndex,
+                    correctAnswer: quizData[currentQuestion].answer,
+                    options: quizData[currentQuestion].options,
+                    explanation: quizData[currentQuestion].explanation,
+                    questionNumber: currentQuestion + 1
+                });
+            }
+            
+            showQuestion();
+            updateProgressBar();
+        }
+
+        // Show next question
+        function showNextQuestion() {
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Show previous question
+        function showPreviousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Show results
+        function showResults() {
+            quizContainer.style.display = 'none';
+            document.querySelector('.navigation').style.display = 'none';
+            document.querySelector('.progress-container').style.display = 'none';
+            document.querySelector('.stats').style.display = 'none';
+            
+            finalScoreEl.textContent = score;
+            
+            // Performance message
+            const percentage = (score / quizData.length) * 100;
+            let message = '';
+            if (percentage >= 80) {
+                message = 'Excellent! You have a strong understanding of Airway Clearance Techniques.';
+            } else if (percentage >= 60) {
+                message = 'Good job! You have a solid grasp of the material.';
+            } else if (percentage >= 40) {
+                message = 'Not bad! Review the material and try again.';
+            } else {
+                message = 'Keep studying! Review the lectures and try again.';
+            }
+            
+            performanceMessageEl.textContent = message;
+            resultsContainer.style.display = 'block';
+            
+            // Show review button only if there are incorrect answers
+            if (incorrectQuestions.length > 0) {
+                reviewBtn.style.display = 'inline-block';
+            } else {
+                reviewBtn.style.display = 'none';
+            }
+        }
+
+        // Show incorrect questions
+        function showIncorrectQuestions() {
+            resultsContainer.style.display = 'none';
+            reviewSection.style.display = 'block';
+            
+            let incorrectHTML = '';
+            incorrectQuestions.forEach((item, index) => {
+                const correctLetter = String.fromCharCode(65 + item.correctAnswer);
+                const userLetter = String.fromCharCode(65 + item.userAnswer);
+                
+                incorrectHTML += `
+                    <div class="review-question">
+                        <div class="review-question-number">Question ${item.questionNumber}</div>
+                        <div class="review-question-text">${item.question}</div>
+                        <div>Your answer: ${userLetter}) ${item.options[item.userAnswer]}</div>
+                        <div class="review-answer review-correct">Correct answer: ${correctLetter}) ${item.options[item.correctAnswer]}</div>
+                        ${item.explanation ? `<div class="review-explanation">${item.explanation}</div>` : ''}
+                    </div>
+                `;
+            });
+            
+            incorrectQuestionsList.innerHTML = incorrectHTML;
+        }
+
+        // Restart quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            incorrectQuestions = [];
+            
+            // Re-randomize the quiz data when restarting
+            quizData = createRandomizedQuizData();
+            
+            quizContainer.style.display = 'block';
+            document.querySelector('.navigation').style.display = 'flex';
+            document.querySelector('.progress-container').style.display = 'block';
+            document.querySelector('.stats').style.display = 'flex';
+            resultsContainer.style.display = 'none';
+            reviewSection.style.display = 'none';
+            
+            showQuestion();
+            updateProgressBar();
+        }
+
+        // Initialize the quiz when the page loads
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>

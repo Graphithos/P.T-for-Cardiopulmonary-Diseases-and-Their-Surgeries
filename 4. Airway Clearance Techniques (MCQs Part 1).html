@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQs on Airway Clearance Techniques (Part 1)</title>
+    <style>
+        :root {
+            --bg-color: #f5f7fa;
+            --container-bg: white;
+            --text-color: #333;
+            --border-color: #ddd;
+            --primary-color: #3498db;
+            --header-color: #2c3e50;
+            --secondary-text: #7f8c8d;
+            --progress-bg: #ecf0f1;
+            --question-bg: #f8f9fa;
+            --option-bg: #fff;
+            --option-hover: #f1f8ff;
+            --option-selected: #d1ecf1;
+            --correct-bg: #d4edda;
+            --correct-border: #28a745;
+            --incorrect-bg: #f8d7da;
+            --incorrect-border: #dc3545;
+            --button-bg: #3498db;
+            --button-hover: #2980b9;
+            --button-disabled: #bdc3c7;
+            --restart-bg: #2ecc71;
+            --restart-hover: #27ae60;
+            --review-bg: #f39c12;
+            --review-hover: #e67e22;
+            --toggle-bg: #ecf0f1;
+            --toggle-slider: white;
+            --toggle-text: #7f8c8d;
+        }
+
+        .dark-mode {
+            --bg-color: #1a1a2e;
+            --container-bg: #16213e;
+            --text-color: #e6e6e6;
+            --border-color: #394867;
+            --primary-color: #4cc9f0;
+            --header-color: #e6e6e6;
+            --secondary-text: #a9a9a9;
+            --progress-bg: #394867;
+            --question-bg: #1f4068;
+            --option-bg: #16213e;
+            --option-hover: #1f4068;
+            --option-selected: #1f4068;
+            --correct-bg: #2d5a2d;
+            --correct-border: #4caf50;
+            --incorrect-bg: #5a2d2d;
+            --incorrect-border: #f44336;
+            --button-bg: #4cc9f0;
+            --button-hover: #3aa8d0;
+            --button-disabled: #5d6d7e;
+            --restart-bg: #2ecc71;
+            --restart-hover: #27ae60;
+            --review-bg: #f39c12;
+            --review-hover: #e67e22;
+            --toggle-bg: #394867;
+            --toggle-slider: #4cc9f0;
+            --toggle-text: #e6e6e6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--container-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            position: relative;
+        }
+        h1 {
+            color: var(--header-color);
+            margin-bottom: 5px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        .author {
+            color: var(--secondary-text);
+            font-style: italic;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        .description {
+            color: var(--secondary-text);
+            margin-bottom: 20px;
+            transition: color 0.3s;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 35px;
+            right: 0;
+            display: flex;
+            align-items: center;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 120px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--toggle-bg);
+            transition: .4s;
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--toggle-text);
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 60px;
+            left: 4px;
+            bottom: 4px;
+            background-color: var(--toggle-slider);
+            transition: .4s;
+            border-radius: 34px;
+            z-index: 1;
+        }
+        .slider-text {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .light-text, .dark-text {
+            transition: opacity 0.3s;
+        }
+        .dark-mode .light-text {
+            opacity: 0.5;
+        }
+        .light-text {
+            opacity: 0.5;
+        }
+        .dark-mode .dark-text {
+            opacity: 1;
+        }
+        .dark-text {
+            opacity: 0.5;
+        }
+        input:checked + .slider:before {
+            transform: translateX(52px);
+        }
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+            height: 10px;
+            transition: background-color 0.3s;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s ease, background-color 0.3s;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--header-color);
+            transition: color 0.3s;
+        }
+        .question {
+            background: var(--question-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: background-color 0.3s;
+        }
+        .question-number {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .options {
+            display: grid;
+            grid-gap: 10px;
+        }
+        .option {
+            padding: 12px 15px;
+            background: var(--option-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .option:hover {
+            background: var(--option-hover);
+            border-color: var(--primary-color);
+        }
+        .option.selected {
+            background: var(--option-selected);
+            border-color: var(--primary-color);
+        }
+        .option.correct {
+            background: var(--correct-bg);
+            border-color: var(--correct-border);
+        }
+        .option.incorrect {
+            background: var(--incorrect-bg);
+            border-color: var(--incorrect-border);
+        }
+        .feedback {
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+        .feedback.correct {
+            background: var(--correct-bg);
+            color: var(--text-color);
+            border: 1px solid var(--correct-border);
+            display: block;
+        }
+        .feedback.incorrect {
+            background: var(--incorrect-bg);
+            color: var(--text-color);
+            border: 1px solid var(--incorrect-border);
+            display: block;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            background: var(--button-bg);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: var(--button-hover);
+        }
+        button:disabled {
+            background: var(--button-disabled);
+            cursor: not-allowed;
+        }
+        .results {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        .score {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--header-color);
+        }
+        .score-value {
+            font-size: 48px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .restart-btn {
+            margin-top: 20px;
+            background: var(--restart-bg);
+        }
+        .restart-btn:hover {
+            background: var(--restart-hover);
+        }
+        .review-btn {
+            margin-top: 20px;
+            background: var(--review-bg);
+        }
+        .review-btn:hover {
+            background: var(--review-hover);
+        }
+        .review-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--question-bg);
+            border-radius: 8px;
+            display: none;
+        }
+        .review-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--header-color);
+            text-align: center;
+        }
+        .review-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 4px solid var(--incorrect-border);
+            background: var(--container-bg);
+            border-radius: 4px;
+        }
+        .review-question-number {
+            font-weight: bold;
+            color: var(--incorrect-border);
+            margin-bottom: 8px;
+        }
+        .review-question-text {
+            margin-bottom: 10px;
+        }
+        .review-answer {
+            margin-top: 8px;
+            font-weight: bold;
+        }
+        .review-correct {
+            color: var(--correct-border);
+        }
+        .review-explanation {
+            margin-top: 5px;
+            font-style: italic;
+            color: var(--secondary-text);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MCQs on Airway Clearance Techniques (Part 1)</h1>
+            <p class="author">Dr. Samy Salem</p>
+            <p class="description">Test your knowledge of Airway Clearance Techniques: breathing strategies, positioning, cough mechanism, and ACT principles</p>
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle">
+                    <span class="slider">
+                        <div class="slider-text">
+                            <span class="light-text">Light</span>
+                            <span class="dark-text">Dark</span>
+                        </div>
+                    </span>
+                </label>
+            </div>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <div class="stats">
+            <div>Question: <span id="current-question">1</span>/<span id="total-questions">55</span></div>
+            <div>Score: <span id="score">0</span>/<span id="total-score">55</span></div>
+        </div>
+
+        <div id="quiz-container">
+            <!-- Questions will be inserted here by JavaScript -->
+        </div>
+
+        <div class="navigation">
+            <button id="prev-btn" disabled>Previous</button>
+            <button id="next-btn">Next</button>
+        </div>
+
+        <div id="results" class="results">
+            <div class="score">Your Score: <span class="score-value" id="final-score">0</span>/55</div>
+            <p id="performance-message"></p>
+            <button class="restart-btn" id="restart-btn">Restart Quiz</button>
+            <button class="review-btn" id="review-btn">Review Incorrect Answers</button>
+        </div>
+
+        <div id="review-section" class="review-section">
+            <h2 class="review-title">Questions Answered Incorrectly</h2>
+            <div id="incorrect-questions-list"></div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz data extracted from 4. Airway Clearance Techniques (MCQs Part 1).pdf
+        const originalQuizData = [
+            {
+                question: "Which breathing strategy is indicated for dyspnea at rest and/or with exertion and wheezing?",
+                options: [
+                    "Diaphragmatic breathing",
+                    "Pursed-lip breathing",
+                    "Inspiratory hold technique",
+                    "Paced breathing"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Diaphragmatic breathing is indicated for all of the following EXCEPT:",
+                options: [
+                    "Hypoxemia",
+                    "Tachypnea",
+                    "Atelectasis",
+                    "Asymmetric chest wall expansion"
+                ],
+                answer: 3,
+                explanation: ""
+            },
+            {
+                question: "Which breathing technique is specifically indicated for asymmetric chest wall expansion, localized lung consolidation, or secretions, and asymmetric posture?",
+                options: [
+                    "Pursed-lip breathing",
+                    "Lateral costal breathing",
+                    "Trunk counterrotation technique",
+                    "Butterfly techniques"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "The inspiratory hold technique is indicated for hypoventilation, atelectasis, and:",
+                options: [
+                    "Wheezing",
+                    "Ineffective cough",
+                    "Asymmetric posture",
+                    "Cheyne-Stokes breathing"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Paced breathing is indicated for which of the following conditions?",
+                options: [
+                    "Low endurance, especially with ADLs and ambulation",
+                    "Asymmetric chest wall expansion",
+                    "Localized lung consolidation",
+                    "Paradoxical breathing"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Which technique of the following is indicated for impaired chest wall mobility, hypoventilation, impaired trunk muscle performance or tightness, and ineffective cough?",
+                options: [
+                    "Pursed-lip breathing",
+                    "Diaphragmatic breathing",
+                    "Trunk counterrotation technique",
+                    "Paced breathing"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Cheyne-Stokes breathing is characterized by breaths that:",
+                options: [
+                    "Move inward during inhalation and outward during exhalation",
+                    "Start shallow, grow progressively deeper and more rapid, taper off to shallow, and then pause entirely before restarting",
+                    "Are consistently deep and rapid",
+                    "Are consistently shallow and slow"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Paradoxical breathing is characterized by the chest wall or abdomen:",
+                options: [
+                    "Moving outward during inhalation and inward during exhalation",
+                    "Moving inward during inhalation and outward during exhalation",
+                    "Remaining completely still during breathing",
+                    "Moving only during exhalation"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "In the forward-lean sitting position (tripod position), the patient sits leaning slightly forward with forearms supported on thighs or a table. This position fixes the shoulder girdle, allowing which muscles to assist inspiration?",
+                options: [
+                    "Accessory muscles (SCM, scalenes, pectoralis major/minor)",
+                    "Diaphragm and intercostals",
+                    "Abdominal muscles",
+                    "Pelvic floor muscles"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "The high sitting position (orthopneic position) is described as the patient sitting upright at what angle?",
+                options: [
+                    "15-30°",
+                    "30-45°",
+                    "60-90°",
+                    "90-120°"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "The high sitting position is clinically used for all of the following EXCEPT:",
+                options: [
+                    "Heart failure with orthopnea",
+                    "Pulmonary edema",
+                    "COPD",
+                    "Unilateral pneumonia"
+                ],
+                answer: 3,
+                explanation: ""
+            },
+            {
+                question: "In the side-lying position for unilateral lung disease, which lung should be placed downward?",
+                options: [
+                    "The diseased lung",
+                    "The healthy lung",
+                    "Either lung, as it makes no difference",
+                    "The lung with more secretions"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "In the side-lying position for unilateral diaphragm weakness, which hemidiaphragm should be placed downward?",
+                options: [
+                    "The weaker hemidiaphragm",
+                    "The stronger hemidiaphragm",
+                    "Either hemidiaphragm",
+                    "Neither, as side-lying is contraindicated"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "The semi-Fowler's position is described as the head of the bed elevated:",
+                options: [
+                    "10-20°",
+                    "30-45°",
+                    "45-60°",
+                    "60-90°"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Fowler's position is described as the head of the bed elevated:",
+                options: [
+                    "15-30°",
+                    "30-45°",
+                    "45-60°",
+                    "90-120°"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Prone positioning improves dorsal lung recruitment, reduces shunt, enhances alveolar ventilation, and improves oxygenation. It is clinically used for all of the following EXCEPT:",
+                options: [
+                    "ARDS",
+                    "Severe hypoxemia",
+                    "COVID-19 respiratory failure",
+                    "Unilateral pneumonia"
+                ],
+                answer: 3,
+                explanation: ""
+            },
+            {
+                question: "Which position is recommended for a patient with asthma?",
+                options: [
+                    "Prone position",
+                    "Semi-Fowler's position",
+                    "Upright sitting, tripod",
+                    "Good lung down"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Which position is recommended for a patient with heart failure?",
+                options: [
+                    "Tripod position",
+                    "High Fowler's",
+                    "Prone position",
+                    "Strong side down"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Which position is recommended for a patient with unilateral pneumonia?",
+                options: [
+                    "Prone position",
+                    "Semi-Fowler's position",
+                    "Good lung down",
+                    "Tripod position"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Which position is recommended for ICU patients?",
+                options: [
+                    "Semi-Fowler's / Fowler's",
+                    "Prone position only",
+                    "Tripod position",
+                    "Strong side down"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Normal airway clearance requires which four essential components?",
+                options: [
+                    "Patent airways, functional mucociliary escalator, adequate hydration, and effective cough reflex",
+                    "Patent airways, bronchoconstriction, dehydration, and strong cough reflex",
+                    "Mucus hypersecretion, ciliary dysfunction, dehydration, and absent cough reflex",
+                    "Airway obstruction, infection, inflammation, and bronchospasm"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Mechanical airway obstruction is caused by which type of problem?",
+                options: [
+                    "Inflammation and bronchospasm",
+                    "Physical narrowing or blockage (tumors, foreign body)",
+                    "Thick, dehydrated mucus",
+                    "Defective mucociliary transport"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Diseases affecting mucociliary clearance, such as cystic fibrosis, are characterized by:",
+                options: [
+                    "Physical narrowing of the airway by tumors",
+                    "Inflammation and bronchospasm only",
+                    "Thick, dehydrated mucus and defective transport",
+                    "An absent cough reflex only"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "During which phase of the cough mechanism does a noxious stimulus activate sensory receptors and send signals to the medullary cough center?",
+                options: [
+                    "Inspiration phase",
+                    "Compression phase",
+                    "Irritation phase",
+                    "Expulsion phase"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is a chemical stimulus that can activate the irritation phase of the cough mechanism?",
+                options: [
+                    "Foreign bodies",
+                    "Infections",
+                    "Smoke and gases",
+                    "Cold air"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "During the inspiration phase of the cough, a deep inspiration of how much volume provides the volume for an effective cough in healthy adults?",
+                options: [
+                    "0.5-1 liter",
+                    "1-2 liters",
+                    "3-4 liters",
+                    "5-6 liters"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "During the compression phase of the cough, the glottis closes while expiratory muscles contract forcefully, lasting approximately:",
+                options: [
+                    "0.02 seconds",
+                    "0.2 seconds",
+                    "2 seconds",
+                    "20 seconds"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "During the compression phase of the cough, pleural and alveolar pressures may exceed:",
+                options: [
+                    "10 mmHg",
+                    "50 mmHg",
+                    "100 mmHg",
+                    "200 mmHg"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "During the expulsion phase of the cough, what is responsible for dislodging mucus?",
+                options: [
+                    "Glottis closure",
+                    "Shear forces generated by high-velocity airflow",
+                    "Pleural pressure exceeding 100 mmHg",
+                    "Ciliary beating"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Expiratory airflow bias, which is required for mucus movement toward the upper airways, occurs when:",
+                options: [
+                    "Peak Inspiratory Flow (PIF) > Peak Expiratory Flow (PEF)",
+                    "PEF equals PIF",
+                    "PEF:PIF ratio is less than 1.0",
+                    "Peak Expiratory Flow (PEF) > Peak Inspiratory Flow (PIF)"
+                ],
+                answer: 3,
+                explanation: ""
+            },
+            {
+                question: "The specific PEF:PIF ratio required for expiratory airflow bias is:",
+                options: [
+                    "Greater than 0.5",
+                    "Greater than 0.9",
+                    "Greater than 1.1",
+                    "Greater than 2.0"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Impaired ciliary function is affected by which of the following?",
+                options: [
+                    "Aging",
+                    "Adequate hydration",
+                    "Effective cough reflex",
+                    "Patent airways"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Retained secretions providing a favorable environment for pathogenic microorganisms can lead to:",
+                options: [
+                    "Pneumonia",
+                    "Emphysema",
+                    "Asthma",
+                    "Pulmonary fibrosis"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Which of the following impairs the compression phase of the cough reflex?",
+                options: [
+                    "Anesthesia and CNS depression",
+                    "Pain and neuromuscular dysfunction",
+                    "Artificial airway and abdominal muscle weakness",
+                    "Inadequate lung recoil (emphysema)"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Which of the following impairs the expulsion phase of the cough reflex?",
+                options: [
+                    "Anesthesia and narcotic analgesics",
+                    "Pain and pulmonary restriction",
+                    "Laryngeal nerve damage",
+                    "Airway obstruction and inadequate lung recoil (emphysema)"
+                ],
+                answer: 3,
+                explanation: ""
+            },
+            {
+                question: "Airway Clearance Techniques (ACTs) are defined as a group of manual and mechanical interventions designed to facilitate:",
+                options: [
+                    "Only the removal of pulmonary secretions",
+                    "Mobilization, transport, and removal of pulmonary secretions from the airways",
+                    "Only the mobilization of secretions",
+                    "Only the transport of secretions"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is a common ACT?",
+                options: [
+                    "Pursed-lip breathing",
+                    "Postural drainage",
+                    "Diaphragmatic breathing",
+                    "Incentive spirometry"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is a goal of ACTs?",
+                options: [
+                    "Increase work of breathing",
+                    "Decrease airway patency",
+                    "Optimize airway patency by removing retained secretions",
+                    "Promote atelectasis"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "ACTs should be performed before meals or at least how long after meals?",
+                options: [
+                    "10 minutes",
+                    "20 minutes",
+                    "30 minutes",
+                    "60 minutes"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Continuous enteral feeding should be temporarily interrupted when appropriate during ACTs because of which consideration?",
+                options: [
+                    "Infection control",
+                    "Timing of treatment",
+                    "Medication considerations",
+                    "Pain management"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Bronchodilators should be administered at which time relative to airway clearance sessions?",
+                options: [
+                    "After airway clearance sessions",
+                    "Before airway clearance sessions",
+                    "During airway clearance sessions",
+                    "Only if the patient requests them"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Inhaled antibiotics for acute pulmonary infection and cystic fibrosis should be administered at which time relative to airway clearance sessions?",
+                options: [
+                    "Before airway clearance sessions",
+                    "During airway clearance sessions",
+                    "After airway clearance sessions",
+                    "At any time, as it makes no difference"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is monitored during ACTs to determine patient response and guide treatment progression?",
+                options: [
+                    "Heart rate, respiratory rate, blood pressure, oxygen saturation, work of breathing, breath sounds, and patient symptoms",
+                    "Only heart rate",
+                    "Only oxygen saturation",
+                    "Only breath sounds"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is one of the five general approaches to airway clearance methods?",
+                options: [
+                    "Pursed-lip breathing",
+                    "Chest physical therapy (CPT)",
+                    "Diaphragmatic breathing",
+                    "Breathing exercises"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Chest physical therapy (CPT) includes which of the following components?",
+                options: [
+                    "Postural drainage, percussion, and vibration",
+                    "Pursed-lip breathing and paced breathing",
+                    "Diaphragmatic breathing and lateral costal breathing",
+                    "Inspiratory hold and trunk counterrotation"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is a physiological principle utilized by ACTs?",
+                options: [
+                    "Decreasing expiratory airflow",
+                    "Creating airflow oscillations that loosen mucus",
+                    "Decreasing lung volumes",
+                    "Eliminating expiratory flow bias"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Oscillation of airflow and secretion clearance is a physiological mechanism used in ACTs to enhance mucus mobilization and improve:",
+                options: [
+                    "Only expiratory flow rate",
+                    "Only ciliary activity",
+                    "Mucociliary clearance",
+                    "Only mucus rheology"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Chest percussion is a manual technique that produces airflow oscillation through which mechanism?",
+                options: [
+                    "Fine oscillatory movements applied during expiration",
+                    "Rhythmic manual compression transmitted through the chest wall",
+                    "Intermittent resistance to expiratory airflow",
+                    "Rapid bursts of positive pressure"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Chest vibrations are a manual technique that produces airflow oscillation through which mechanism?",
+                options: [
+                    "Rhythmic manual compression transmitted through the chest wall",
+                    "Fine oscillatory movements applied during expiration",
+                    "Intermittent resistance to expiratory airflow",
+                    "Rapid bursts of positive pressure"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Oscillatory PEP devices (Flutter®, Acapella®) produce airway oscillations through which mechanism?",
+                options: [
+                    "Fine oscillatory movements applied during expiration",
+                    "Rhythmic manual compression transmitted through the chest wall",
+                    "Intermittent resistance to expiratory airflow producing airway oscillations",
+                    "Rapid bursts of positive pressure directly into airways"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Intrapulmonary Percussive Ventilation (IPV) produces airway oscillations through which mechanism?",
+                options: [
+                    "Fine oscillatory movements applied during expiration",
+                    "Rhythmic manual compression transmitted through the chest wall",
+                    "Intermittent resistance to expiratory airflow",
+                    "Delivers rapid bursts of positive pressure directly into airways"
+                ],
+                answer: 3,
+                explanation: ""
+            },
+            {
+                question: "When PEF exceeds PIF by at least what percentage does mucus transport toward upper airways become enhanced?",
+                options: [
+                    "5% (PEF:PIF > 1.05)",
+                    "10% (PEF:PIF > 1.1)",
+                    "20% (PEF:PIF > 1.2)",
+                    "50% (PEF:PIF > 1.5)"
+                ],
+                answer: 1,
+                explanation: ""
+            },
+            {
+                question: "Which of the following is a collateral ventilation pathway?",
+                options: [
+                    "Pores of Kohn",
+                    "Alveolar ducts",
+                    "Respiratory bronchioles",
+                    "Terminal bronchioles"
+                ],
+                answer: 0,
+                explanation: ""
+            },
+            {
+                question: "Which of the following techniques increases lung volumes by combining positive pressure with airflow oscillation?",
+                options: [
+                    "Deep breathing techniques",
+                    "Positioning strategies",
+                    "Oscillatory PEP (Flutter®, Acapella®)",
+                    "Breathing exercises"
+                ],
+                answer: 2,
+                explanation: ""
+            },
+            {
+                question: "Best preventive uses of airway clearance therapy include all of the following EXCEPT:",
+                options: [
+                    "Body positioning and patient mobilization to prevent retained secretions in acutely ill patients",
+                    "ACT combined with physical activity to maintain lung function in patients with CF",
+                    "Strict bed rest without any mobilization",
+                    "Positioning strategies to improve lung expansion"
+                ],
+                answer: 2,
+                explanation: ""
+            }
+        ];
+
+        // Function to shuffle an array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Function to create a randomized version of the quiz data
+        function createRandomizedQuizData() {
+            const randomizedData = [];
+            
+            originalQuizData.forEach(question => {
+                // Create a copy of the original question
+                const randomizedQuestion = {
+                    question: question.question,
+                    options: [...question.options], // Copy options array
+                    originalAnswer: question.answer, // Store original answer index
+                    explanation: question.explanation
+                };
+                
+                // Create an array of indices [0, 1, 2, 3]
+                const indices = [0, 1, 2, 3];
+                
+                // Shuffle the indices
+                shuffleArray(indices);
+                
+                // Create a new options array with shuffled order
+                const shuffledOptions = indices.map(index => question.options[index]);
+                
+                // Find the new position of the correct answer
+                const newAnswerIndex = indices.indexOf(question.answer);
+                
+                // Update the question with shuffled options and new answer
+                randomizedQuestion.options = shuffledOptions;
+                randomizedQuestion.answer = newAnswerIndex;
+                
+                randomizedData.push(randomizedQuestion);
+            });
+            
+            return randomizedData;
+        }
+
+        // Create randomized quiz data
+        let quizData = createRandomizedQuizData();
+
+        // Quiz state variables
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let incorrectQuestions = [];
+
+        // DOM elements
+        const quizContainer = document.getElementById('quiz-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const currentQuestionEl = document.getElementById('current-question');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const scoreEl = document.getElementById('score');
+        const totalScoreEl = document.getElementById('total-score');
+        const resultsContainer = document.getElementById('results');
+        const finalScoreEl = document.getElementById('final-score');
+        const performanceMessageEl = document.getElementById('performance-message');
+        const restartBtn = document.getElementById('restart-btn');
+        const reviewBtn = document.getElementById('review-btn');
+        const reviewSection = document.getElementById('review-section');
+        const incorrectQuestionsList = document.getElementById('incorrect-questions-list');
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const lightText = document.querySelector('.light-text');
+        const darkText = document.querySelector('.dark-text');
+
+        // Initialize quiz
+        function initQuiz() {
+            totalQuestionsEl.textContent = quizData.length;
+            totalScoreEl.textContent = quizData.length;
+            showQuestion();
+            updateProgressBar();
+            
+            // Initialize dark mode based on system preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+                updateToggleText(true);
+            } else {
+                updateToggleText(false);
+            }
+            
+            // Event listeners
+            prevBtn.addEventListener('click', showPreviousQuestion);
+            nextBtn.addEventListener('click', showNextQuestion);
+            restartBtn.addEventListener('click', restartQuiz);
+            reviewBtn.addEventListener('click', showIncorrectQuestions);
+            darkModeToggle.addEventListener('change', toggleDarkMode);
+        }
+
+        // Toggle dark mode
+        function toggleDarkMode() {
+            const isDarkMode = darkModeToggle.checked;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            updateToggleText(isDarkMode);
+        }
+
+        // Update toggle text opacity
+        function updateToggleText(isDarkMode) {
+            if (isDarkMode) {
+                lightText.style.opacity = '0.5';
+                darkText.style.opacity = '1';
+            } else {
+                lightText.style.opacity = '1';
+                darkText.style.opacity = '0.5';
+            }
+        }
+
+        // Show current question
+        function showQuestion() {
+            currentQuestionEl.textContent = currentQuestion + 1;
+            scoreEl.textContent = score;
+            
+            const question = quizData[currentQuestion];
+            let optionsHTML = '';
+            
+            question.options.forEach((option, index) => {
+                let optionClass = 'option';
+                if (userAnswers[currentQuestion] === index) {
+                    optionClass += ' selected';
+                    if (index === question.answer) {
+                        optionClass += ' correct';
+                    } else {
+                        optionClass += ' incorrect';
+                    }
+                }
+                
+                optionsHTML += `
+                    <div class="${optionClass}" data-index="${index}">
+                        ${String.fromCharCode(65 + index)}) ${option}
+                    </div>
+                `;
+            });
+            
+            let feedbackHTML = '';
+            if (userAnswers[currentQuestion] !== null) {
+                const isCorrect = userAnswers[currentQuestion] === question.answer;
+                const correctLetter = String.fromCharCode(65 + question.answer);
+                const correctAnswerText = question.options[question.answer];
+                
+                feedbackHTML = `
+                    <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
+                        ${isCorrect ? '✓ Correct!' : '✗ Incorrect!'} 
+                        ${!isCorrect ? `Correct answer: ${correctLetter}) ${correctAnswerText}` : ''}
+                        ${question.explanation ? `<br><br>Explanation: ${question.explanation}` : ''}
+                    </div>
+                `;
+            }
+            
+            quizContainer.innerHTML = `
+                <div class="question">
+                    <div class="question-number">Question ${currentQuestion + 1}/${quizData.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">${optionsHTML}</div>
+                    ${feedbackHTML}
+                </div>
+            `;
+            
+            // Add event listeners to options
+            const optionElements = quizContainer.querySelectorAll('.option');
+            optionElements.forEach(option => {
+                option.addEventListener('click', selectOption);
+            });
+            
+            // Update navigation buttons
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.textContent = currentQuestion === quizData.length - 1 ? 'Finish Quiz' : 'Next';
+        }
+
+        // Select an option
+        function selectOption(e) {
+            if (userAnswers[currentQuestion] !== null) return; // Already answered
+            
+            const selectedOption = e.currentTarget;
+            const selectedIndex = parseInt(selectedOption.dataset.index);
+            
+            userAnswers[currentQuestion] = selectedIndex;
+            
+            // Check if answer is correct
+            if (selectedIndex === quizData[currentQuestion].answer) {
+                score++;
+                scoreEl.textContent = score;
+            } else {
+                // Add to incorrect questions list
+                incorrectQuestions.push({
+                    question: quizData[currentQuestion].question,
+                    userAnswer: selectedIndex,
+                    correctAnswer: quizData[currentQuestion].answer,
+                    options: quizData[currentQuestion].options,
+                    explanation: quizData[currentQuestion].explanation,
+                    questionNumber: currentQuestion + 1
+                });
+            }
+            
+            showQuestion();
+            updateProgressBar();
+        }
+
+        // Show next question
+        function showNextQuestion() {
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Show previous question
+        function showPreviousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Show results
+        function showResults() {
+            quizContainer.style.display = 'none';
+            document.querySelector('.navigation').style.display = 'none';
+            document.querySelector('.progress-container').style.display = 'none';
+            document.querySelector('.stats').style.display = 'none';
+            
+            finalScoreEl.textContent = score;
+            
+            // Performance message
+            const percentage = (score / quizData.length) * 100;
+            let message = '';
+            if (percentage >= 80) {
+                message = 'Excellent! You have a strong understanding of Airway Clearance Techniques.';
+            } else if (percentage >= 60) {
+                message = 'Good job! You have a solid grasp of the material.';
+            } else if (percentage >= 40) {
+                message = 'Not bad! Review the material and try again.';
+            } else {
+                message = 'Keep studying! Review the lectures and try again.';
+            }
+            
+            performanceMessageEl.textContent = message;
+            resultsContainer.style.display = 'block';
+            
+            // Show review button only if there are incorrect answers
+            if (incorrectQuestions.length > 0) {
+                reviewBtn.style.display = 'inline-block';
+            } else {
+                reviewBtn.style.display = 'none';
+            }
+        }
+
+        // Show incorrect questions
+        function showIncorrectQuestions() {
+            resultsContainer.style.display = 'none';
+            reviewSection.style.display = 'block';
+            
+            let incorrectHTML = '';
+            incorrectQuestions.forEach((item, index) => {
+                const correctLetter = String.fromCharCode(65 + item.correctAnswer);
+                const userLetter = String.fromCharCode(65 + item.userAnswer);
+                
+                incorrectHTML += `
+                    <div class="review-question">
+                        <div class="review-question-number">Question ${item.questionNumber}</div>
+                        <div class="review-question-text">${item.question}</div>
+                        <div>Your answer: ${userLetter}) ${item.options[item.userAnswer]}</div>
+                        <div class="review-answer review-correct">Correct answer: ${correctLetter}) ${item.options[item.correctAnswer]}</div>
+                        ${item.explanation ? `<div class="review-explanation">${item.explanation}</div>` : ''}
+                    </div>
+                `;
+            });
+            
+            incorrectQuestionsList.innerHTML = incorrectHTML;
+        }
+
+        // Restart quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            incorrectQuestions = [];
+            
+            // Re-randomize the quiz data when restarting
+            quizData = createRandomizedQuizData();
+            
+            quizContainer.style.display = 'block';
+            document.querySelector('.navigation').style.display = 'flex';
+            document.querySelector('.progress-container').style.display = 'block';
+            document.querySelector('.stats').style.display = 'flex';
+            resultsContainer.style.display = 'none';
+            reviewSection.style.display = 'none';
+            
+            showQuestion();
+            updateProgressBar();
+        }
+
+        // Initialize the quiz when the page loads
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
